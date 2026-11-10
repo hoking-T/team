@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+left to right direction
+actor "资料员" as user
+rectangle "商品资料" {
+usecase "新增商品" as U0
+usecase "查询商品与货位" as U1
+}
+user --> U0
+user --> U1
+
+@enduml

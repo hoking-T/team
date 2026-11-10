@@ -1,0 +1,51 @@
+{
+  "time": "2026-10-20T16:23:11.524911",
+  "result": "PASS",
+  "method": "Restart same release JAR with same working directory",
+  "stock": [
+    {
+      "PRODUCT_ID": 1,
+      "CODE": "HTTP001",
+      "NAME": "HTTP验证键盘",
+      "UNIT": "个",
+      "LOCATION": "A01",
+      "QUANTITY": 80
+    },
+    {
+      "PRODUCT_ID": 1,
+      "CODE": "HTTP001",
+      "NAME": "HTTP验证键盘",
+      "UNIT": "个",
+      "LOCATION": "A02",
+      "QUANTITY": 0
+    },
+    {
+      "PRODUCT_ID": 1,
+      "CODE": "HTTP001",
+      "NAME": "HTTP验证键盘",
+      "UNIT": "个",
+      "LOCATION": "B01",
+      "QUANTITY": 0
+    }
+  ],
+  "tracking": [
+    {
+      "ID": 1,
+      "SHIPMENT_ID": 1,
+      "STATUS": "WAITING",
+      "CREATED_AT": "2026-10-20T16:20:13.871973+08:00"
+    },
+    {
+      "ID": 2,
+      "SHIPMENT_ID": 1,
+      "STATUS": "TRANSIT",
+      "CREATED_AT": "2026-10-20T16:20:13.929806+08:00"
+    },
+    {
+      "ID": 3,
+      "SHIPMENT_ID": 1,
+      "STATUS": "DELIVERED",
+      "CREATED_AT": "2026-10-20T16:20:13.932013+08:00"
+    }
+  ]
+}

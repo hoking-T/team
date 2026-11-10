@@ -1,0 +1,49 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 分析领域模型（已实现范围）
+class 商品 {
+编号
+名称
+单位
+}
+class 货位 {
+货位码
+}
+class 库存 {
+数量
+}
+class 入库单 {
+数量
+时间
+}
+class 出库订单 {
+数量
+状态
+创建时间
+}
+class 物流单 {
+状态
+}
+class 跟踪记录 {
+状态
+时间
+}
+class 业务事件 {
+事件ID
+类型
+单据ID
+摘要
+}
+商品 "1" -- "0..*" 库存
+货位 "1" -- "0..*" 库存
+商品 "1" -- "0..*" 入库单
+货位 "1" -- "0..*" 入库单
+商品 "1" -- "0..*" 出库订单
+货位 "1" -- "0..*" 出库订单
+出库订单 "1" -- "0..1" 物流单
+物流单 "1" -- "1..*" 跟踪记录
+业务事件 ..> 入库单 : 入库事件关联
+业务事件 ..> 出库订单 : 订单/出库事件关联
+@enduml

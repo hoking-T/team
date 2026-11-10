@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+left to right direction
+actor "仓管员" as user
+rectangle "入库与库存" {
+usecase "登记入库" as U0
+usecase "查询库存" as U1
+}
+user --> U0
+user --> U1
+
+@enduml

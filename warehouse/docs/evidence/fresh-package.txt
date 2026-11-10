@@ -1,0 +1,1 @@
+PASS: extracted ZIP starts with JDK25.0.1 and no Maven/MySQL/Node. Empty database initializes; product -> inbound100 -> order20 -> ship -> stock80. Port8082. 2026-10-20. Executed by Codex.

@@ -1,0 +1,288 @@
+{
+  "time": "2026-10-20T16:20:13.937063+08:00",
+  "executor": "Codex automated HTTP verification",
+  "results": [
+    {
+      "path": "/products",
+      "input": {
+        "code": "HTTP001",
+        "name": "HTTP验证键盘",
+        "unit": "个"
+      },
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "id": 1
+      }
+    },
+    {
+      "path": "/inbounds",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": 100
+      },
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "id": 1
+      }
+    },
+    {
+      "path": "/orders",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": 20
+      },
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "id": 1
+      }
+    },
+    {
+      "path": "/stocks?productId=1",
+      "input": null,
+      "expected": 200,
+      "actual": 200,
+      "response": [
+        {
+          "PRODUCT_ID": 1,
+          "CODE": "HTTP001",
+          "NAME": "HTTP验证键盘",
+          "UNIT": "个",
+          "LOCATION": "A01",
+          "QUANTITY": 100
+        },
+        {
+          "PRODUCT_ID": 1,
+          "CODE": "HTTP001",
+          "NAME": "HTTP验证键盘",
+          "UNIT": "个",
+          "LOCATION": "A02",
+          "QUANTITY": 0
+        },
+        {
+          "PRODUCT_ID": 1,
+          "CODE": "HTTP001",
+          "NAME": "HTTP验证键盘",
+          "UNIT": "个",
+          "LOCATION": "B01",
+          "QUANTITY": 0
+        }
+      ]
+    },
+    {
+      "path": "/orders/1/ship",
+      "input": {},
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "message": "出库成功，物流单已生成"
+      }
+    },
+    {
+      "path": "/stocks?productId=1",
+      "input": null,
+      "expected": 200,
+      "actual": 200,
+      "response": [
+        {
+          "PRODUCT_ID": 1,
+          "CODE": "HTTP001",
+          "NAME": "HTTP验证键盘",
+          "UNIT": "个",
+          "LOCATION": "A01",
+          "QUANTITY": 80
+        },
+        {
+          "PRODUCT_ID": 1,
+          "CODE": "HTTP001",
+          "NAME": "HTTP验证键盘",
+          "UNIT": "个",
+          "LOCATION": "A02",
+          "QUANTITY": 0
+        },
+        {
+          "PRODUCT_ID": 1,
+          "CODE": "HTTP001",
+          "NAME": "HTTP验证键盘",
+          "UNIT": "个",
+          "LOCATION": "B01",
+          "QUANTITY": 0
+        }
+      ]
+    },
+    {
+      "path": "/orders/1/ship",
+      "input": {},
+      "expected": 409,
+      "actual": 409,
+      "response": {
+        "message": "订单已经出库，不能重复扣减"
+      }
+    },
+    {
+      "path": "/orders",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": 81
+      },
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "id": 2
+      }
+    },
+    {
+      "path": "/orders/2/ship",
+      "input": {},
+      "expected": 409,
+      "actual": 409,
+      "response": {
+        "message": "库存不足，订单保持待出库"
+      }
+    },
+    {
+      "path": "/inbounds",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": 0
+      },
+      "expected": 400,
+      "actual": 400,
+      "response": {
+        "message": "输入不合法：必填项不能为空，数量须为1至1000000的整数，商品编号仅限字母、数字、下划线和短横线"
+      }
+    },
+    {
+      "path": "/inbounds",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": -1
+      },
+      "expected": 400,
+      "actual": 400,
+      "response": {
+        "message": "输入不合法：必填项不能为空，数量须为1至1000000的整数，商品编号仅限字母、数字、下划线和短横线"
+      }
+    },
+    {
+      "path": "/inbounds",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": 1.5
+      },
+      "expected": 400,
+      "actual": 400,
+      "response": {
+        "message": "输入不合法：必填项不能为空，数量须为1至1000000的整数，商品编号仅限字母、数字、下划线和短横线"
+      }
+    },
+    {
+      "path": "/inbounds",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": null
+      },
+      "expected": 400,
+      "actual": 400,
+      "response": {
+        "message": "输入不合法：必填项不能为空，数量须为1至1000000的整数，商品编号仅限字母、数字、下划线和短横线"
+      }
+    },
+    {
+      "path": "/inbounds",
+      "input": {
+        "productId": 1,
+        "locationId": 1,
+        "quantity": 1000001
+      },
+      "expected": 400,
+      "actual": 400,
+      "response": {
+        "message": "输入不合法：必填项不能为空，数量须为1至1000000的整数，商品编号仅限字母、数字、下划线和短横线"
+      }
+    },
+    {
+      "path": "/shipments",
+      "input": null,
+      "expected": 200,
+      "actual": 200,
+      "response": [
+        {
+          "ID": 1,
+          "ORDER_ID": 1,
+          "STATUS": "WAITING",
+          "NAME": "HTTP验证键盘",
+          "QUANTITY": 20
+        }
+      ]
+    },
+    {
+      "path": "/shipments/1/advance",
+      "input": {
+        "status": "DELIVERED"
+      },
+      "expected": 409,
+      "actual": 409,
+      "response": {
+        "message": "状态只能按待揽收→运输中→已签收推进，不能重复或跳级"
+      }
+    },
+    {
+      "path": "/shipments/1/advance",
+      "input": {
+        "status": "TRANSIT"
+      },
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "message": "物流状态已更新"
+      }
+    },
+    {
+      "path": "/shipments/1/advance",
+      "input": {
+        "status": "DELIVERED"
+      },
+      "expected": 200,
+      "actual": 200,
+      "response": {
+        "message": "物流状态已更新"
+      }
+    },
+    {
+      "path": "/shipments/1/tracking",
+      "input": null,
+      "expected": 200,
+      "actual": 200,
+      "response": [
+        {
+          "ID": 1,
+          "SHIPMENT_ID": 1,
+          "STATUS": "WAITING",
+          "CREATED_AT": "2026-10-20T16:20:13.871973+08:00"
+        },
+        {
+          "ID": 2,
+          "SHIPMENT_ID": 1,
+          "STATUS": "TRANSIT",
+          "CREATED_AT": "2026-10-20T16:20:13.929806+08:00"
+        },
+        {
+          "ID": 3,
+          "SHIPMENT_ID": 1,
+          "STATUS": "DELIVERED",
+          "CREATED_AT": "2026-10-20T16:20:13.932013+08:00"
+        }
+      ]
+    }
+  ]
+}

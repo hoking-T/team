@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title UC02/04/06/08 查询 鲁邦图
+actor 操作员
+boundary "列表与筛选/轨迹 / ApiController" as B
+control "ApiController" as C
+entity "商品/货位/库存/订单/物流/轨迹" as E
+操作员 --> B
+B --> C : 校验路径参数
+C --> E : SqlStore参数化SELECT；轨迹按时间和ID排序
+C --> B : 返回真实数据库列表
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 后续设计：拣选（未实现）
+start
+:接收订单拣选任务;
+:按货位找到商品;
+:核对编号和数量;
+if (足量且正确?) then (是)
+ :记录实拣数;
+ :复核后允许确认出库;
+else (否)
+ :登记缺货/错货;
+ :人工处理，暂不出库;
+endif
+stop
+@enduml

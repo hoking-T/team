@@ -1,0 +1,26 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 物理部署：实线已实现，虚线未来候选
+node "Windows 开发/演示电脑" {
+ artifact "浏览器 中文网页" as browser
+ node "JDK / Spring Boot 127.0.0.1:8080" as java {
+  component "HTTP API + 业务模块" as app
+  component "同步事件监听器" as listener
+  component "本地模拟物流" as simulator
+ }
+ database "H2 文件 data/warehouse.mv.db" as db
+}
+node "未来：扫码枪/传感器" as iot
+node "未来：设备网关" as gateway
+component "未来：设备接入API" as device
+browser --> app : HTTP/JSON
+app --> listener : publishEvent 同一事务
+listener --> simulator
+app --> db : JDBC
+simulator --> db : JDBC
+iot ..> gateway : MQTT/串口（候选）
+gateway ..> device : HTTPS（候选）
+device ..> app : 校验后的设备事件
+@enduml

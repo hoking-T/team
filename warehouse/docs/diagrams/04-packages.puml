@@ -1,0 +1,28 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 逻辑包图
+package "static 网页" as web
+package "api 请求/控制器/错误" as api
+package "catalog 商品" as catalog
+package "inventory 入库" as inventory
+package "orders 订单" as orders
+package "events 发布/监听" as events
+package "logistics 模拟物流" as logistics
+package "common JDBC/异常" as common
+web --> api : HTTP JSON
+api --> catalog
+api --> inventory
+api --> orders
+api --> logistics
+api --> common : 查询
+catalog --> common
+inventory --> common
+orders --> common
+inventory --> events
+orders --> events
+events --> logistics
+events --> common
+logistics --> common
+@enduml

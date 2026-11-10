@@ -1,0 +1,24 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 后续设计：盘点（未实现）
+start
+:选择盘点范围并记录库存版本;
+:现场实点;
+if (库存版本已变化?) then (是)
+ :重新盘点;
+ stop
+endif
+:计算账实差异;
+if (差异非零?) then (是)
+ :提交复核;
+ if (批准?) then (是)
+  :事务内校验版本、调整库存、保存差异单;
+  :发布库存调整事件;
+ else (否)
+  :保留驳回记录;
+ endif
+endif
+stop
+@enduml

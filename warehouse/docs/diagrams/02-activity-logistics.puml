@@ -1,0 +1,20 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 物流状态推进
+start
+:锁定物流记录;
+if (不存在?) then (是)
+ :404;
+ stop
+endif
+if (WAITING到TRANSIT或TRANSIT到DELIVERED?) then (是)
+ :更新状态;
+ :新增轨迹;
+ :共同提交（异常则共同回滚）;
+else (否)
+ :409 不允许跳级、重复、逆向;
+endif
+stop
+@enduml
