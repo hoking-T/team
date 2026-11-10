@@ -1,0 +1,39 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title UC07 出库序列图
+actor 仓管员 as U
+boundary ApiController as API
+control OrderService as O
+database H2 as DB
+participant ApplicationEventPublisher as PUB
+control EventHandlers as EH
+control LogisticsService as L
+U -> API : POST /api/orders/{id}/ship
+API -> O : ship(id) [事务开始]
+O -> DB : SELECT订单 FOR UPDATE
+alt 不存在/已出库
+ O --> API : 404/409 回滚
+else 待出库
+ O -> DB : UPDATE库存 WHERE quantity>=需求
+ alt 库存不足
+  O --> API : 409 回滚
+ else 成功扣减
+  O -> DB : UPDATE订单 SHIPPED
+  O -> PUB : STOCK_SHIPPED / ORDER_SHIPPED
+  PUB -> EH : 同步handle(event)
+  EH -> DB : 检查事件ID并写审计
+  EH -> L : createForOrder(orderId)
+  L -> DB : 锁订单/去重/写物流和WAITING轨迹
+  alt 任一步异常
+   O -> DB : ROLLBACK
+   O --> API : 错误响应
+  else 全部成功
+   O -> DB : COMMIT
+   O --> API : 成功
+  end
+ end
+end
+API --> U : JSON
+@enduml

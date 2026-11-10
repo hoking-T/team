@@ -1,0 +1,10 @@
+{
+  "time": "2026-10-20T16:21:01.240932",
+  "browser": "Microsoft Edge headless Playwright",
+  "flow": "商品KB001/键盘 -> 入库100 -> 下单20(仍100) -> 出库(80) -> 运输 -> 签收",
+  "product": 2,
+  "order": 3,
+  "shipment": 2,
+  "pageErrors": [],
+  "result": "PASS"
+}

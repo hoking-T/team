@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title UC05 创建订单 序列图
+actor 操作员 as U
+boundary "订单表单/HTTP API" as B
+control "OrderService" as C
+database "H2" as DB
+U -> B : 校验Movement请求
+B -> C : 调用用例操作
+C -> DB : 创建PENDING订单、发布ORDER_CREATED，不扣库存
+DB --> C : 结果
+C --> B : 返回订单ID
+B --> U : 显示结果或错误
+@enduml

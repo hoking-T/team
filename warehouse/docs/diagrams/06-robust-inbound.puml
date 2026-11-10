@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title UC03 入库 鲁邦图
+actor 操作员
+boundary "入库表单 / ApiController" as B
+control "InventoryService" as C
+entity "库存/入库单/事件记录" as E
+操作员 --> B
+B --> C : 校验Movement请求
+C --> E : 条件累加库存、写入库单、发布STOCK_RECEIVED
+C --> B : 返回入库单ID
+@enduml

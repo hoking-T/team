@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title UC07 确认出库 鲁邦图
+actor 操作员
+boundary "订单按钮 / ApiController" as B
+control "OrderService" as C
+entity "订单/库存/物流/轨迹/事件记录" as E
+操作员 --> B
+B --> C : 传订单ID
+C --> E : 锁订单、条件扣库存、改状态、发布事件生成物流
+C --> B : 提交成功或整体回滚
+@enduml

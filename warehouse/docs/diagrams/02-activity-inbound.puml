@@ -1,0 +1,25 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 入库逻辑
+start
+:校验商品货位与正整数;
+if (合法且存在?) then (否)
+ :400或404;
+ stop
+endif
+:事务内条件UPDATE累加库存;
+if (超过库存上限?) then (是)
+ :409 / 回滚;
+ stop
+endif
+:写入库单并发布STOCK_RECEIVED;
+:同步写事件审计;
+if (任一步失败?) then (是)
+ :回滚并报错;
+else (否)
+ :提交;
+endif
+stop
+@enduml

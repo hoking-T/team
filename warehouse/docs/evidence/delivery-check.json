@@ -1,0 +1,8 @@
+{
+  "jar_sha256": "d2d692cde1b53857ea29c09b9f396b8d965ecfc4d7a9e8e8817a80ca4dc45e65",
+  "pdf_pages": 44,
+  "uml_source_count": 25,
+  "junit_tests": 15,
+  "junit_failures": 0,
+  "description": "Packaged release matches tested target JAR. No team commits fabricated."
+}

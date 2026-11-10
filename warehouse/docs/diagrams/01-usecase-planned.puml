@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+left to right direction
+actor "仓管员" as user
+rectangle "后续规划（未实现）" {
+usecase "确认拣选" as U0
+usecase "库存盘点" as U1
+}
+user --> U0
+user --> U1
+
+@enduml

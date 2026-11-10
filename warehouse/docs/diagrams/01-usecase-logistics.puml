@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+left to right direction
+actor "物流操作员" as user
+rectangle "模拟物流" {
+usecase "查询物流与轨迹" as U0
+usecase "推进物流" as U1
+}
+user --> U0
+user --> U1
+
+@enduml

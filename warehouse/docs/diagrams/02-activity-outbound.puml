@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title 确认出库：关键程序逻辑与业务活动
+start
+:接收订单ID / 开启事务;
+:SELECT订单 FOR UPDATE;
+if (订单存在?) then (否)
+ :404 / 回滚;
+ stop
+endif
+if (状态PENDING?) then (否)
+ :409 已出库 / 回滚;
+ stop
+endif
+:条件UPDATE扣减库存;
+if (影响行数=1?) then (否)
+ :409 库存不足 / 回滚;
+ stop
+endif
+:修改订单为SHIPPED;
+:发布STOCK_SHIPPED及ORDER_SHIPPED;
+:监听器记审计、创建物流及初始轨迹;
+if (事件处理成功?) then (否)
+ :异常传播 / 全事务回滚;
+ stop
+else (是)
+ :提交 / 返回成功;
+endif
+stop
+@enduml

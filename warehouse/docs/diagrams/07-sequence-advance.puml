@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+skinparam defaultFontName Microsoft YaHei
+skinparam shadowing false
+title UC09 推进物流 序列图
+actor 操作员 as U
+boundary "物流按钮/HTTP API" as B
+control "LogisticsService" as C
+database "H2" as DB
+U -> B : 校验Advance请求
+B -> C : 调用用例操作
+C -> DB : 锁记录、校验相邻状态、更新并写轨迹
+DB --> C : 结果
+C --> B : 提交成功或整体回滚
+B --> U : 显示结果或错误
+@enduml
