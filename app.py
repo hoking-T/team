@@ -25,7 +25,7 @@ PORT = int(os.environ.get("WMS_PORT", "8000"))
 TOKENS = {}          # token -> {"id","username","name","role","permissions"}
 TOKEN_LOCK = threading.Lock()
 
-
+#注释可删
 def now():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
