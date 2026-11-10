@@ -1,0 +1,22 @@
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# 本地配置（数据库密码在这里，不提交）
+application-local.yml
+.env
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# 系统
+Thumbs.db
+.DS_Store
