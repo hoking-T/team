@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# 运行时数据库（首次启动由 db.py 自动重建种子数据）
+wms.db
+wms.db-journal
+
+# 日志与临时文件
+*.log
+
+# 编辑器
+.vscode/
+.idea/

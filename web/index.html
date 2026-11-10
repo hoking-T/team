@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智慧仓储物流协同系统</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= 登录页 ================= -->
+<div id="login-page" class="login-wrap">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="logo-mark">WMS</div>
+      <div>
+        <h1>智慧仓储物流协同系统</h1>
+        <p>Warehouse &amp; Logistics Collaboration Platform</p>
+      </div>
+    </div>
+    <div class="login-form">
+      <label>账号</label>
+      <input id="login-user" placeholder="请输入账号" value="admin">
+      <label>密码</label>
+      <input id="login-pwd" type="password" placeholder="请输入密码" value="admin123">
+      <button id="login-btn" class="btn btn-primary btn-block">登 录</button>
+      <div class="login-tips">
+        <span>演示账号：admin/admin123（管理员）</span>
+        <span>keeper/123456（仓库管理员）</span>
+        <span>operator/123456（作业员）</span>
+        <span>logistics/123456（物流员）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 主框架 ================= -->
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="side-brand">
+      <div class="logo-mark small">WMS</div>
+      <div class="side-title">智慧仓储<br><span>物流协同系统</span></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="side-foot">
+      <div id="side-user"></div>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">退出登录</button>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="view-title">工作台</h2>
+        <p id="view-sub" class="sub">实时掌握仓储作业与物流协同状态</p>
+      </div>
+      <div class="topbar-right">
+        <span class="dot-live"></span><span class="live-text">服务运行中</span>
+        <span id="clock" class="clock"></span>
+      </div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+
+<!-- 弹窗 -->
+<div id="modal-mask" class="modal-mask hidden">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">标题</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-foot" class="modal-foot"></div>
+  </div>
+</div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
