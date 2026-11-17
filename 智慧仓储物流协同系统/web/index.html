@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智慧仓储物流协同系统</title>
+<link rel="stylesheet" href="style.css?v=20261117">
+</head>
+<body>
+
+<!-- ================= 登录页 ================= -->
+<div id="login-page" class="login-wrap">
+  <div class="login-shell">
+
+    <!-- 左：品牌区 -->
+    <aside class="login-hero">
+      <div class="hero-top">
+        <div class="hero-brand">
+          <strong>WMS</strong>
+          <span>智慧仓储物流协同系统</span>
+        </div>
+      </div>
+
+      <div class="hero-main">
+        <h1>一站式<br>仓储物流协同</h1>
+        <p>从入库上架到拣选出库，全流程在线协同。</p>
+        <div class="hero-tags">
+          <span>实时库存</span><span>入库上架</span><span>拣选复核</span><span>运单跟踪</span>
+        </div>
+      </div>
+
+      <div class="hero-accounts">
+        <div class="ha-title"><span>演示账号</span><em>点击任意账号自动填入</em></div>
+        <div class="ha-list">
+          <button type="button" class="ha-item" data-user="admin" data-pwd="admin123">
+            <span class="ha-avatar">A</span>
+            <span class="ha-info"><b>管理员</b><i>admin / admin123</i></span>
+          </button>
+          <button type="button" class="ha-item" data-user="keeper" data-pwd="123456">
+            <span class="ha-avatar">K</span>
+            <span class="ha-info"><b>仓库管理员</b><i>keeper / 123456</i></span>
+          </button>
+          <button type="button" class="ha-item" data-user="operator" data-pwd="123456">
+            <span class="ha-avatar">O</span>
+            <span class="ha-info"><b>作业员</b><i>operator / 123456</i></span>
+          </button>
+          <button type="button" class="ha-item" data-user="logistics" data-pwd="123456">
+            <span class="ha-avatar">L</span>
+            <span class="ha-info"><b>物流员</b><i>logistics / 123456</i></span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 右：登录表单 -->
+    <section class="login-panel">
+      <div class="login-form-card">
+        <div class="fp-top"><span>欢迎回来</span><span class="fp-ver">v1.0</span></div>
+        <h2>登录</h2>
+        <p class="fp-sub">使用系统分配的账号进入工作台</p>
+
+        <label class="fp-label" for="login-user">账号</label>
+        <div class="fp-field">
+          <span class="fp-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <input id="login-user" placeholder="请输入账号" value="admin" autocomplete="username">
+        </div>
+
+        <label class="fp-label" for="login-pwd">密码</label>
+        <div class="fp-field">
+          <span class="fp-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </span>
+          <input id="login-pwd" type="password" placeholder="请输入密码" value="admin123" autocomplete="current-password">
+        </div>
+
+        <button id="login-btn" class="login-submit">登 录</button>
+        <div class="fp-foot">遇到登录问题请联系系统管理员</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ================= 主框架 ================= -->
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="side-brand">
+      <div class="logo-mark small">WMS</div>
+      <div class="side-title">智慧仓储<br><span>物流协同系统</span></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="side-foot">
+      <div id="side-user"></div>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">退出登录</button>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="view-title">工作台</h2>
+        <p id="view-sub" class="sub">实时掌握仓储作业与物流协同状态</p>
+      </div>
+      <div class="topbar-right">
+        <span class="status-pill"><i class="dot-live"></i>服务运行中</span>
+        <span id="clock" class="clock"></span>
+      </div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+
+<!-- 弹窗 -->
+<div id="modal-mask" class="modal-mask hidden">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">标题</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-foot" class="modal-foot"></div>
+  </div>
+</div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+/* 登录页：点击演示账号自动填入 */
+document.querySelectorAll('.ha-item').forEach(el => {
+  el.addEventListener('click', () => {
+    document.getElementById('login-user').value = el.dataset.user;
+    document.getElementById('login-pwd').value = el.dataset.pwd;
+  });
+});
+</script>
+<script src="app.js?v=20261117"></script>
+</body>
+</html>
